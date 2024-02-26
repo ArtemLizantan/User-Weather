@@ -1,0 +1,25 @@
+.nothing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+
+  &__title {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 700;
+  }
+  &__body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    a {
+      color: #fff;
+      transition: all 0.4s;
+      &:hover {
+        transform: translateY(3px);
+      }
+    }
+  }
+}
