@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import UserCard from "../../../../components/userCard/UserCard";
 import "./userLocalCards.scss";
 import Container from "../../../../components/container/Container";
-import { useEffect } from "react";
 
 const UserLocalCards = () => {
   const savedCards = JSON.parse(localStorage.getItem("savedCards")) || [];

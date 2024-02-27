@@ -5,6 +5,7 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [usersWithWeather, setUsersWithWeather] = useState([]);
+  const [countUsersInLocalStorage, setCountUsersInLocalStorage] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +50,8 @@ export const DataProvider = ({ children }) => {
   const contextValue = {
     users,
     usersWithWeather,
+    countUsersInLocalStorage,
+    setCountUsersInLocalStorage,
   };
 
   return (

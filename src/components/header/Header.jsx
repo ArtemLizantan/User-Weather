@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import Container from "../container/Container";
 import "./header.scss";
+import { useFilters } from "../../context/DataContext";
 
 const Header = () => {
+  const { countUsersInLocalStorage } = useFilters();
+
   return (
     <header className="header">
       <div className="header__container">
@@ -11,7 +13,7 @@ const Header = () => {
             UserWeather
           </Link>
           <div className="header__local">
-            <span>0</span>
+            <span>{countUsersInLocalStorage}</span>
             <Link className="header__link" to={"/home/local"}>
               LocalStorage
             </Link>

@@ -6,7 +6,7 @@ import "./userCards.scss";
 
 const UserCards = () => {
   const { usersWithWeather } = useFilters();
-  console.log(usersWithWeather);
+  // console.log(usersWithWeather);
 
   return (
     <section className="user-cards">

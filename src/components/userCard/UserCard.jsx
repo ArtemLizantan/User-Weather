@@ -1,14 +1,17 @@
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import WeatherIcons from "../weatherIcons/WeatherIcons";
+
 import { useFilters } from "../../context/DataContext";
+import CloseBtn from "../../UI/closeBtn/CloseBtn";
+import "./userCard.scss";
+import WeatherModal from "./weatherModel/WeatherModel";
 
 const UserCard = ({
   id,
@@ -28,6 +31,8 @@ const UserCard = ({
   homepage,
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const { countUsersInLocalStorage, setCountUsersInLocalStorage } =
+    useFilters();
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -36,6 +41,12 @@ const UserCard = ({
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("savedCards");
+    const initialCount = storedData ? JSON.parse(storedData).length : 0;
+    setCountUsersInLocalStorage(initialCount);
+  }, [countUsersInLocalStorage]);
 
   const handleSaveToLocalStorage = () => {
     const savedCards = JSON.parse(localStorage.getItem("savedCards")) || [];
@@ -61,6 +72,9 @@ const UserCard = ({
       });
 
       localStorage.setItem("savedCards", JSON.stringify(savedCards));
+      const storedData = localStorage.getItem("savedCards");
+      const initialCount = storedData ? JSON.parse(storedData).length : 0;
+      setCountUsersInLocalStorage(initialCount);
     } else {
       alert("The card has already been saved!");
     }
@@ -137,37 +151,14 @@ const UserCard = ({
         sx={styles.modalBox}
       >
         <Box sx={styles.modalContent}>
-          <Box>
-            <Typography
-              sx={styles.modalTitle}
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-            >
-              Weather in {city}
-            </Typography>
-            <Typography
-              sx={styles.modalDescription}
-              id="modal-modal-description"
-            >
-              Current Temperature: {currentTemp} °C
-            </Typography>
-            <Typography
-              sx={styles.modalDescription}
-              id="modal-modal-description"
-            >
-              Max Temperature: {Math.max(...maxTemp)} °C
-            </Typography>
-            <Typography
-              sx={styles.modalDescription}
-              id="modal-modal-description"
-            >
-              Min Temperature: {Math.min(...minTemp)}°C
-            </Typography>
-          </Box>
-          <Box>
-            <WeatherIcons weatherCode={weatherCode} />
-          </Box>
+          <CloseBtn onClick={handleClosePopup} />
+          <WeatherModal
+            city={city}
+            currentTemp={currentTemp}
+            maxTemp={maxTemp}
+            minTemp={minTemp}
+            weatherCode={weatherCode}
+          />
         </Box>
       </Modal>
     </>
@@ -224,7 +215,7 @@ const styles = {
     borderRadius: "20px",
     transform: "translate(-50%, -50%)",
     maxWidth: 700,
-    width: "100%",
+    width: "70%",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "space-between",
@@ -232,20 +223,6 @@ const styles = {
       "linear-gradient(94.78deg, #6880ff 9.27%, #3ca7f4 50.77%, #8c45ff 84.06%)",
     boxShadow: 24,
     padding: 6,
-  },
-  modalTitle: {
-    fontFamily: "Montserrat",
-    fontWeight: "600",
-    color: "#ffff",
-    fontSize: "25px",
-    marginBottom: 4,
-  },
-  modalDescription: {
-    fontFamily: "Montserrat",
-    fontWeight: "400",
-    color: "#ffff",
-    fontSize: "20px",
-    mb: 1,
   },
 };
 
