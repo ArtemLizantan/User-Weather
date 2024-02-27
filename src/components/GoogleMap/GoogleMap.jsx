@@ -19,8 +19,18 @@ const GoogleMapComponent = ({ lat, lng, imgURL }) => {
     lng: Number(lng),
   };
 
-  if (loadError) return <h1>Error loading Google Maps</h1>;
-  if (!isLoaded) return <h1>Loading...</h1>;
+  if (loadError)
+    return (
+      <h1 style={{ color: "red", fontWeight: "500", marginTop: "20px" }}>
+        Error loading Google Maps
+      </h1>
+    );
+  if (!isLoaded)
+    return (
+      <h1 style={{ color: "white", fontWeight: "500", marginTop: "20px" }}>
+        Loading...
+      </h1>
+    );
 
   return (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={4}>
