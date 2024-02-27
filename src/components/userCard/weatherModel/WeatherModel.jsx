@@ -84,8 +84,8 @@ const styles = {
     marginBottom: 4,
     textAlign: {
       xs: "center",
-      sm: "flex-start",
-      xl: "flex-start",
+      sm: "start",
+      xl: "start",
     },
   },
   modalDescription: {

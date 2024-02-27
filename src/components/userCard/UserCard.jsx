@@ -85,66 +85,42 @@ const UserCard = ({
 
   return (
     <>
-      <Card id={id} className="user-card" sx={styles.card}>
-        <CardContent sx={styles.cardContent1}>
-          <CardMedia
-            sx={styles.cardMedia}
-            component="img"
-            image={picture}
-            title={firstname}
-          />
-        </CardContent>
-        <CardContent sx={{ minHeight: 175 }}>
-          <Typography
-            sx={styles.cardContent2}
-            gutterBottom
-            variant="h5"
-            component="h2"
-          >
-            {firstname + " " + lastname}
-          </Typography>
-          <Typography
-            sx={{ ...styles.cardContent2, marginBottom: 1 }}
-            variant="body2"
-            color="text.secondary"
-          >
-            Email: {email}
-          </Typography>
-          <Typography
-            sx={{ ...styles.cardContent2, marginBottom: 1 }}
-            variant="body2"
-            color="text.secondary"
-          >
-            Gender: {gender}
-          </Typography>
-          <Typography
-            sx={{ ...styles.cardContent2, marginBottom: 1 }}
-            variant="body2"
-            color="text.secondary"
-          >
-            Location: {country + ", " + state + ", " + city}
-          </Typography>
-        </CardContent>
-        <CardActions style={styles.cardActions}>
-          {homepage && (
+      <div id={id} className="user-card">
+        <div className="user-card__body">
+          <div className="user-card__image">
+            <img src={picture} alt="user-img" className="user-card__img" />
+          </div>
+        </div>
+        <div className="user-card__wrapper-content">
+          <div className="user-card__content">
+            <h2 className="user-card__name">{firstname + " " + lastname}</h2>
+            <h3 className="user-card__text">Email: {email}</h3>
+            <h3 className="user-card__text">Gender: {gender}</h3>
+            <h3 className="user-card__text">
+              Location: {country + ", " + state + ", " + city}
+            </h3>
+          </div>
+          <div className="user-card__buttons">
+            {homepage && (
+              <Button
+                onClick={handleSaveToLocalStorage}
+                sx={styles.button}
+                size="small"
+              >
+                Save
+              </Button>
+            )}
             <Button
-              onClick={handleSaveToLocalStorage}
               sx={styles.button}
               size="small"
+              id={idButton}
+              onClick={handleOpenPopup}
             >
-              Save
+              Weather
             </Button>
-          )}
-          <Button
-            sx={styles.button}
-            size="small"
-            id={idButton}
-            onClick={handleOpenPopup}
-          >
-            Weather
-          </Button>
-        </CardActions>
-      </Card>
+          </div>
+        </div>
+      </div>
 
       <Modal
         open={isPopupOpen}
@@ -172,38 +148,6 @@ const UserCard = ({
 };
 
 const styles = {
-  card: {
-    maxWidth: 370,
-    width: "100%",
-    background: "#212426",
-    borderRadius: "10px",
-    overflow: "visible",
-    boxShadow: "none",
-  },
-  cardContent1: {
-    background: "#86a8ff",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "10px",
-  },
-  cardMedia: {
-    height: 300,
-    maxWidth: 300,
-    width: "100%",
-    borderRadius: "50%",
-    padding: "5px",
-  },
-  cardContent2: {
-    color: "white",
-    fontWeight: 700,
-    textAlign: "center",
-    fontFamily: "Montserrat",
-    marginBottom: 2,
-  },
-  cardActions: {
-    background: "#212426",
-  },
   button: {
     background: "black",
     fontWeight: 700,

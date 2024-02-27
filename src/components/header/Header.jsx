@@ -24,12 +24,12 @@ const Header = () => {
     <header className="header">
       <div className="header__container">
         <div className="header__body">
-          <Link to={"/home"} className="header__logo">
+          <Link to={"/"} className="header__logo">
             UserWeather
           </Link>
           <div className="header__local">
             <span>{countUsersInLocalStorage}</span>
-            <Link className="header__link" to={"/home/local"}>
+            <Link className="header__link" to={"/local"}>
               LocalStorage
             </Link>
           </div>

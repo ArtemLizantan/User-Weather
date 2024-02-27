@@ -14,12 +14,25 @@
     align-items: center;
     gap: 10px;
     flex-direction: column;
-    a {
-      color: #fff;
-      transition: all 0.4s;
-      &:hover {
-        transform: translateY(3px);
-      }
-    }
+  }
+}
+
+.local-link {
+  color: #fff;
+  transition: all 0.4s;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  @media(max-width: 768px) {
+    margin-bottom: 25px;
+    font-size: 16px;
+  }
+  svg {
+    width: 15px;
+  }
+  &:hover {
+    color: #86a8ff;
   }
 }

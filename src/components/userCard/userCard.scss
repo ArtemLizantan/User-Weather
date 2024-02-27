@@ -15,3 +15,79 @@
     }
   }
 }
+
+.user-card {
+  max-width: 370px;
+  width: 100%;
+  background: #212426;
+  border-radius: 10px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  @media(max-width: 567px) {
+    min-height: 300px;
+  }
+  &__body {
+    background: #86a8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  &__image {
+    height: 350px;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    @media(max-width: 567px) {
+      height: 200px;
+      max-width: 150px;
+    }
+    img {
+      height: 300px;
+      max-width: 300px;
+      width: 100%;
+      border-radius: 50%;
+      padding: 5px;
+      @media(max-width: 567px) {
+        height: 150px;
+        max-width: 150px;
+      }
+    }
+  }
+  &__wrapper-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex: 1 1 auto;
+  }
+  &__content {
+    padding: 20px;
+  }
+  &__content > * {
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    font-family: "Montserrat";
+    margin-bottom: 10px;
+  }
+  &__name {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  &__text{
+   line-height: 1.2;
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    flex-wrap: wrap;
+    @media(max-width: 567px) {
+      justify-content: center;
+    }
+  }
+}

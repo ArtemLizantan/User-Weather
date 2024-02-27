@@ -4,6 +4,7 @@ import "./userLocalCards.scss";
 import Container from "../../../../components/container/Container";
 import gsap from "gsap";
 import { useLayoutEffect } from "react";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 const UserLocalCards = () => {
   const savedCards = JSON.parse(localStorage.getItem("savedCards")) || [];
 
@@ -44,7 +45,10 @@ const UserLocalCards = () => {
       <div className="nothing">
         <div className="nothing__body">
           <div className="nothing__title">There's nothing here</div>
-          <Link to={"/home"}>Go to homepage</Link>
+          <Link className="local-link" to={"/"}>
+            <ArrowBackIosIcon />
+            Go to homepage
+          </Link>
         </div>
       </div>
     );
@@ -52,6 +56,10 @@ const UserLocalCards = () => {
     return (
       <section className="user-cards">
         <Container>
+          <Link className="local-link" to={"/"}>
+            <ArrowBackIosIcon />
+            Go to homepage
+          </Link>
           <div className="user-cards__body">
             {savedCards
               .reverse()

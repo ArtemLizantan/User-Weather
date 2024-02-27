@@ -6,7 +6,7 @@ import { DataProvider } from "./context/DataContext.jsx";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <DataProvider>
-    <BrowserRouter>
+    <BrowserRouter  basename="/home/">
       <App />
     </BrowserRouter>
   </DataProvider>
