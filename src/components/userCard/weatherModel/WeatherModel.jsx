@@ -15,6 +15,7 @@ const WeatherModal = ({
   lat,
   lng,
   imgMarker,
+  imgURL
 }) => {
   useLayoutEffect(() => {
     const tl = gsap.timeline();
@@ -65,7 +66,7 @@ const WeatherModal = ({
             <WeatherIcons weatherCode={weatherCode} />
           </Box>
         </Box>
-        <GoogleMap lat={lat} lng={lng} imgMarker={imgMarker} />
+        <GoogleMap lat={lat} lng={lng} imgURL={imgURL} />
       </Box>
     </div>
   );

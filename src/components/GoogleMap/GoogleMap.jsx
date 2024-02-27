@@ -1,24 +1,38 @@
-import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import React from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import "./googleMaps.scss";
-const GoogleMap = ({ lat, lng, imgMarker }) => {
+
+const GoogleMapComponent = ({ lat, lng, imgURL }) => {
   const apiKey = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
-  const mapId = import.meta.env.VITE_MAP_ID;
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: apiKey,
+  });
+
+  const containerStyle = {
+    width: "100%",
+    height: "400px",
+  };
+
+  const center = {
+    lat: Number(lat),
+    lng: Number(lng),
+  };
+
+  if (loadError) return <h1>Error loading Google Maps</h1>;
+  if (!isLoaded) return <h1>Loading...</h1>;
 
   return (
-    <APIProvider apiKey={apiKey}>
-      <div className="map-wrapper">
-        <Map
-          zoom={15}
-          mapId={mapId}
-          center={{ lat: Number(lat), lng: Number(lng) }}
-        >
-          <AdvancedMarker position={{ lat: Number(lat), lng: Number(lng) }}>
-            <img className="img-marker" src={imgMarker} alt="marker" />
-          </AdvancedMarker>
-        </Map>
-      </div>
-    </APIProvider>
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={4}>
+      <Marker
+        position={center}
+        icon={{
+          url: imgURL,
+          scaledSize: new window.google.maps.Size(40, 40),
+        }}
+      />
+    </GoogleMap>
   );
 };
 
-export default GoogleMap;
+export default GoogleMapComponent;

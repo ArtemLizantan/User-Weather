@@ -80,6 +80,7 @@ const UserLocalCards = () => {
                   id,
                   lat,
                   lng,
+                  imgURL
                 }) => (
                   <UserCard
                     id={id}
@@ -98,7 +99,7 @@ const UserLocalCards = () => {
                     weatherCode={weatherCode}
                     lat={lat}
                     lng={lng}
-                    imgMarker={picture}
+                    imgURL={picture}
                   />
                 )
               )}

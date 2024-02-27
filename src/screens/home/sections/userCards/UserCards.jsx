@@ -70,7 +70,7 @@ const UserCards = () => {
               weatherCode={weatherData.current.weather_code}
               lat={user.location.coordinates.latitude}
               lng={user.location.coordinates.longitude}
-              imgMarker={user.picture.large}
+              imgURL={user.picture.large}
               homepage
             />
           ))}

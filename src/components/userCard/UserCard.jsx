@@ -29,7 +29,7 @@ const UserCard = ({
   homepage,
   lat,
   lng,
-  imgMarker,
+  imgURL
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const { countUsersInLocalStorage, setCountUsersInLocalStorage } =
@@ -72,6 +72,7 @@ const UserCard = ({
         weatherCode,
         lat,
         lng,
+        imgURL
       });
 
       localStorage.setItem("savedCards", JSON.stringify(savedCards));
@@ -139,7 +140,7 @@ const UserCard = ({
             weatherCode={weatherCode}
             lat={lat}
             lng={lng}
-            imgMarker={imgMarker}
+            imgURL={imgURL}
           />
         </Box>
       </Modal>
