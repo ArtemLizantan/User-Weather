@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://artemlizantan.github.io/User-Weather/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,7 +18,6 @@
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "@react-google-maps/api": "^2.19.3",
-    "@vis.gl/react-google-maps": "^0.7.1",
     "gsap": "^3.12.5",
     "openmeteo": "^1.1.3",
     "react": "^18.2.0",
