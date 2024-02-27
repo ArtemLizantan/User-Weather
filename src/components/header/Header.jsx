@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import "./header.scss";
 import { useFilters } from "../../context/DataContext";
-
+import gsap from "gsap";
+import { useLayoutEffect } from "react";
 const Header = () => {
   const { countUsersInLocalStorage } = useFilters();
+
+  useLayoutEffect(() => {
+    const tl = gsap.timeline();
+
+    gsap.set(".header__body", { y: "-100%", opacity: 0 });
+
+    tl.to(".header__body", {
+      duration: 1,
+      opacity: 1,
+      y: 0,
+      ease: "power2.out",
+      delay: 1,
+    });
+  }, []);
 
   return (
     <header className="header">

@@ -7,12 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-
 import { useFilters } from "../../context/DataContext";
 import CloseBtn from "../../UI/closeBtn/CloseBtn";
 import "./userCard.scss";
 import WeatherModal from "./weatherModel/WeatherModel";
-
 const UserCard = ({
   id,
   firstname,
@@ -29,6 +27,9 @@ const UserCard = ({
   minTemp,
   weatherCode,
   homepage,
+  lat,
+  lng,
+  imgMarker,
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const { countUsersInLocalStorage, setCountUsersInLocalStorage } =
@@ -69,6 +70,8 @@ const UserCard = ({
         maxTemp,
         minTemp,
         weatherCode,
+        lat,
+        lng,
       });
 
       localStorage.setItem("savedCards", JSON.stringify(savedCards));
@@ -158,6 +161,9 @@ const UserCard = ({
             maxTemp={maxTemp}
             minTemp={minTemp}
             weatherCode={weatherCode}
+            lat={lat}
+            lng={lng}
+            imgMarker={imgMarker}
           />
         </Box>
       </Modal>
@@ -215,7 +221,18 @@ const styles = {
     borderRadius: "20px",
     transform: "translate(-50%, -50%)",
     maxWidth: 700,
-    width: "70%",
+    flexDirection: "row",
+    overflow: "auto",
+    maxHeight: {
+      xs: "400px",
+      md: "800px",
+      xl: "800px",
+    },
+    width: {
+      xs: "70%",
+      md: "80%",
+      xl: "100%",
+    },
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "space-between",

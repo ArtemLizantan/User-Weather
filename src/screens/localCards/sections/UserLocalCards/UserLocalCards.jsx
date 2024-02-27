@@ -2,9 +2,42 @@ import { Link } from "react-router-dom";
 import UserCard from "../../../../components/userCard/UserCard";
 import "./userLocalCards.scss";
 import Container from "../../../../components/container/Container";
-
+import gsap from "gsap";
+import { useLayoutEffect } from "react";
 const UserLocalCards = () => {
   const savedCards = JSON.parse(localStorage.getItem("savedCards")) || [];
+
+  useLayoutEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      gsap.utils.toArray(".user-cards__body > *").forEach((element) => {
+        gsap.fromTo(
+          element,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 70%",
+            },
+          }
+        );
+      });
+    } else {
+      const tl = gsap.timeline();
+
+      gsap.set(".user-cards__body > *", { opacity: 0 });
+
+      tl.to(".user-cards__body > *", {
+        duration: 0.5,
+        opacity: 1,
+        stagger: 0.2,
+        ease: "power2.out",
+      });
+    }
+  }, [savedCards]);
 
   if (savedCards.length <= 0) {
     return (
@@ -37,6 +70,8 @@ const UserLocalCards = () => {
                   currentTemp,
                   weatherCode,
                   id,
+                  lat,
+                  lng,
                 }) => (
                   <UserCard
                     id={id}
@@ -53,6 +88,9 @@ const UserLocalCards = () => {
                     maxTemp={maxTemp}
                     minTemp={minTemp}
                     weatherCode={weatherCode}
+                    lat={lat}
+                    lng={lng}
+                    imgMarker={picture}
                   />
                 )
               )}

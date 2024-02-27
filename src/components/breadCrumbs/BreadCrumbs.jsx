@@ -2,7 +2,8 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./breadCrumbs.scss";
 import Container from "../container/Container";
-
+import gsap from "gsap";
+import { useLayoutEffect } from "react";
 const Breadcrumbs = () => {
   const location = useLocation();
 
@@ -19,6 +20,20 @@ const Breadcrumbs = () => {
         </div>
       );
     });
+
+  useLayoutEffect(() => {
+    const tl = gsap.timeline();
+
+    gsap.set(".breadcrumbs", { opacity: 0 });
+
+    tl.to(".breadcrumbs", {
+      duration: 1,
+      opacity: 1,
+      y: 0,
+      ease: "power2.out",
+      delay: 2,
+    });
+  }, []);
 
   return (
     <Container>
